@@ -41,9 +41,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
       fs.unlinkSync(item)
     return item;
   });
-
   /**************************************************************************** */
-
   //! END @TODO1
   
   // Root Endpoint

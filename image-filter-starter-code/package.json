@@ -4,16 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "tsc": "tsc",
+    "dev": "ts-node-dev ./src/server.ts",
+    "prod": "tsc && node ./www/server.js",
     "clean": "rimraf www/ || true",
-    "build": "npm run clean && tsc && cp package.json www/package.json && mkdir www/tmp/ && cd www && zip -r Archive.zip . && cd ..",
-    "dev": "ts-node-dev ./src/server.ts"
+    "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/grutt/udacity-c2-image-filter.git"
   },
-  "author": "",
+  "author": "Adam Ingram",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/grutt/udacity-c2-image-filter/issues"
@@ -28,8 +31,11 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "aws-sdk": "^2.874.0",
     "express": "^4.17.1",
     "jimp": "^0.16.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "sequelize": "^6.6.2",
+    "sequelize-typescript": "^2.0.0-beta.1"
   }
 }
