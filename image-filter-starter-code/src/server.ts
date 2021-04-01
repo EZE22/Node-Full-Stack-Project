@@ -27,7 +27,6 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // RETURNS
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
-  // @ts-ignore
   app.get("/filteredimage/", async ( req: Request, res: Response) => {
     let {image_url} = req.query;
     const fs = require('fs')
@@ -36,9 +35,9 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
      return res.status(400)
           .send(`img url required`)
     }
-      res.status(200)
-          .send(item);
-      fs.unlinkSync(item)
+    await res.status(200).sendFile(item);
+     //await deleteLocalFiles(fs.unlinkSync(item))
+    //fs.unlinkSync(item)
     return item;
   });
   /**************************************************************************** */
@@ -47,7 +46,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // Root Endpoint
   // Displays a simple message to the user
   app.get( "/", async ( req, res ) => {
-    res.send("try GET /filteredimage?image_url={{}}")
+    console.log(res.send("try GET /filteredimage?image_url={{}}"))
   } );
   
 
