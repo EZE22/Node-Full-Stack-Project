@@ -34,10 +34,12 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     if(!image_url) {
      return res.status(400)
           .send(`img url required`)
-    }
+    } else {
       res.status(200)
-          .send(item);
-      fs.unlinkSync(item)
+          .sendFile(item);
+    }
+    //await deleteLocalFiles(fs.unlinkSync(item))
+    //fs.unlinkSync(item)
     return item;
   });
   /**************************************************************************** */
