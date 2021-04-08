@@ -35,9 +35,10 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
      return res.status(400)
           .send(`img url required`)
     }
-    await res.status(200).sendFile(item);
-     //await deleteLocalFiles(fs.unlinkSync(item))
-    //fs.unlinkSync(item)
+    // returning the filtered image and to delete old files on server
+    res.status(200).sendFile(item, () =>
+    {deleteLocalFiles([item])});
+
     return item;
   });
   /**************************************************************************** */
